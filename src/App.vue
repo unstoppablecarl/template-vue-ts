@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Phaser from 'phaser';
-import { ref, toRaw } from 'vue';
+import * as Phaser from 'phaser';
+import { ref, useTemplateRef } from 'vue';
 import type { MainMenu } from './game/scenes/MainMenu';
 import PhaserGame from './PhaserGame.vue';
 
@@ -8,12 +8,12 @@ import PhaserGame from './PhaserGame.vue';
 const canMoveSprite = ref();
 
 //  References to the PhaserGame component (game and scene are exposed)
-const phaserRef = ref();
+const phaserRef = useTemplateRef('phaserRef');
 const spritePosition = ref({ x: 0, y: 0 });
 
 const changeScene = () => {
 
-    const scene = toRaw(phaserRef.value.scene) as MainMenu;
+    const scene = phaserRef.value!.scene as MainMenu;
 
     if (scene)
     {
@@ -28,7 +28,7 @@ const moveSprite = () => {
     if (phaserRef.value !== undefined)
     {
 
-        const scene = toRaw(phaserRef.value.scene) as MainMenu;
+        const scene = phaserRef.value!.scene as MainMenu;
 
         if (scene)
         {
@@ -45,7 +45,7 @@ const moveSprite = () => {
 
 const addSprite = () => {
 
-    const scene = toRaw(phaserRef.value.scene) as Phaser.Scene;
+    const scene = phaserRef.value!.scene as Phaser.Scene;
 
     if (scene)
     {

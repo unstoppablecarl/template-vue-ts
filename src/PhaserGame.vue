@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, shallowRef } from 'vue';
 import { EventBus } from './game/EventBus';
 import StartGame from './game/main';
-import Phaser from 'phaser';
+import * as Phaser from 'phaser';
+import { type Game, type Scene } from 'phaser';
 
 // Save the current scene instance
-const scene = ref();
-const game = ref();
+const scene = shallowRef<Scene>();
+const game = shallowRef<Game>();
 
 const emit = defineEmits(['current-active-scene']);
 
@@ -29,6 +30,7 @@ onUnmounted(() => {
     if (game.value)
     {
         game.value.destroy(true);
+        // @ts-expect-error: destroying instance
         game.value = null;
     }
 
