@@ -9,7 +9,9 @@ import { type Game, type Scene } from 'phaser';
 const scene = shallowRef<Scene>();
 const game = shallowRef<Game>();
 
-const emit = defineEmits(['current-active-scene']);
+const emit = defineEmits<{
+    'current-active-scene': [scene: Scene]
+}>()
 
 onMounted(() => {
 
