@@ -29,7 +29,7 @@ export default defineConfig({
           '@': fileURLToPath(new URL('../src', import.meta.url))
         }
       },
-    logLevel: 'warning',
+    logLevel: 'warn',
     build: {
         rollupOptions: {
             output: {
